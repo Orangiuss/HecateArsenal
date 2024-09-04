@@ -85,7 +85,7 @@ We welcome contributions! Feel free to submit pull requests for bug fixes, new o
 
 ## License 📜
 
-[Specify the license under which HecateArsenal is distributed, e.g., MIT, GPL, etc.]
+GPL-3.0 license (see [LICENSE](https://github.com/Orangiuss/HecateArsenal/tree/main?tab=GPL-3.0-1-ov-file)
 
 ## Contact 📧
 
