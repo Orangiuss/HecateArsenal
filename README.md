@@ -5,6 +5,13 @@
   <br>
 </h1>
 
+<p align="center">
+  <a href="https://github.com/Orangiuss/HecateArsenal/blob/main/README.md">English</a>
+  <a href="https://github.com/Orangiuss/HecateArsenal/blob/main/README_FR.md">Français</a>
+  <a href="https://github.com/Orangiuss/HecateArsenal/blob/main/README_CN.md">中文</a>
+  <a href="https://github.com/Orangiuss/HecateArsenal/blob/main/README_JP.md">日本語</a>
+</p>
+
 HecateArsenal is a powerful and versatile framework designed to streamline your offensive security and penetration testing workflows. It offers a rich collection of one-liners, enabling efficient and effective security assessments.
 
 ![alt text](images/hecatearsenal.png)
@@ -23,7 +30,7 @@ HecateArsenal provides a comprehensive arsenal of one-liners covering various se
   - Privilege Escalation 👑
   - Maintaining Access 🔐
   - Web Application Security Testing 🕸️
-  - Wireless Security Assessments 📡
+  <!-- - Wireless Security Assessments 📡 -->
   - Social Engineering 🎭
   - Password Cracking 🔑
 - **Customization:** Easily add and tailor your own one-liners to fit specific testing needs.
