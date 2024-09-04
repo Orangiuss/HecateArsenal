@@ -4,20 +4,21 @@
 </h1>
 
 <h1 align="center">
-  <br>
     HecateArsenal 🧙🏻‍♀️🔮🪄 - Framework de One-liners
-  <br>
-  <br>
 </h1>
-
-<p align="center">
-  <a href="https://github.com/Orangiuss/HecateArsenal/blob/main/README.md">English</a>
+    <p align="center">
+  <a href="https://github.com/Orangiuss/HecateArsenal/blob/main/README.md">English</a> 
+    -
   <a href="https://github.com/Orangiuss/HecateArsenal/blob/main/README_FR.md">Français</a>
+    -
   <a href="https://github.com/Orangiuss/HecateArsenal/blob/main/README_CN.md">中文</a>
+    -
   <a href="https://github.com/Orangiuss/HecateArsenal/blob/main/README_JP.md">日本語</a>
-</p>
+    </p>
+<br>
+<br>
 
-HecateArsenal est un framework puissant et polyvalent conçu pour optimiser vos workflows de sécurité offensive et de tests d'intrusion. Il propose une riche collection de one-liners, permettant des évaluations de sécurité rapides et efficaces.
+`hecatearsenal` est un framework puissant et polyvalent conçu pour optimiser vos workflows de sécurité offensive et de tests d'intrusion. Il propose une riche collection de one-liners, permettant des évaluations de sécurité rapides et efficaces.
 
 ![HecateArsenal](img/HecateArsenal.png)
 

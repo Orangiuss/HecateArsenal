@@ -17,7 +17,7 @@
   <a href="https://github.com/Orangiuss/HecateArsenal/blob/main/README_JP.md">日本語</a>
 </p>
 
-HecateArsenal is a powerful and versatile framework designed to streamline your offensive security and penetration testing workflows. It offers a rich collection of one-liners, enabling efficient and effective security assessments.
+`hecatearsenal` is a powerful and versatile framework designed to streamline your offensive security and penetration testing workflows. It offers a rich collection of one-liners, enabling efficient and effective security assessments.
 
 ![HecateArsenal](img/HecateArsenal.png)
 
