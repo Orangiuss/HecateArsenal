@@ -1,0 +1,15 @@
+id: recon-subdomains
+
+info:
+  name: Recon Subdomains
+  author: Orangiuss
+  complexity: medium
+  description: |
+    Enumerate subdomains using Subfinder and check their status codes, titles and technologies using httpx
+  metadata:
+    verified: true
+  tags: subdomains, recon, enumeration, subfinder, httpx, status-code, title, tech-detect, medium
+
+one-liner:
+  cmd: |
+    subfinder -d {DOMAIN} -silent | httpx -silent -status-code -title -tech-detect -fc 404,403,401,400

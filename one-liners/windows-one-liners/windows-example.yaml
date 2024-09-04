@@ -1,0 +1,15 @@
+id: example-one-liner
+
+info:
+  name: Example One Liner
+  author: John Doe
+  complexity: low, medium, high, expert
+  description: |
+    This is an example one-liner
+  metadata:
+    verified: true
+  tags: example-tag
+
+one-liner:
+  cmd: |
+    echo "Hello world, this is an example one-liner from HecateArsenal 🧙🏻‍♀️🔮🪄 - One-liners Framework"

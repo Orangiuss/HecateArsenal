@@ -1,4 +1,9 @@
 <h1 align="center">
+  <img src="img/HecateArsenal_logo.png" alt="HecateArsenal" width="200px">
+  <br>
+</h1>
+
+<h1 align="center">
   <br>
     HecateArsenal 🧙🏻‍♀️🔮🪄 - Framework de One-liners
   <br>
@@ -14,7 +19,7 @@
 
 HecateArsenal est un framework puissant et polyvalent conçu pour optimiser vos workflows de sécurité offensive et de tests d'intrusion. Il propose une riche collection de one-liners, permettant des évaluations de sécurité rapides et efficaces.
 
-![alt text](images/hecatearsenal.png)
+![HecateArsenal](img/HecateArsenal.png)
 
 ## Description 📝
 
