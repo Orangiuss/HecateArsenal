@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="img/HecateArsenal_logo_1.png" alt="HecateArsenal" width="200px">
+  <img src="img/logo.png" alt="HecateArsenal" width="200px">
   <br>
 </h1>
 
@@ -10,17 +10,17 @@
   <a href="https://github.com/Orangiuss/HecateArsenal/blob/main/README.md">English</a> 
     -
   <a href="https://github.com/Orangiuss/HecateArsenal/blob/main/README_FR.md">Français</a>
-    -
+    <!-- -
   <a href="https://github.com/Orangiuss/HecateArsenal/blob/main/README_CN.md">中文</a>
     -
-  <a href="https://github.com/Orangiuss/HecateArsenal/blob/main/README_JP.md">日本語</a>
+  <a href="https://github.com/Orangiuss/HecateArsenal/blob/main/README_JP.md">日本語</a> -->
     </p>
 <br>
 <br>
 
 `hecatearsenal` est un framework puissant et polyvalent conçu pour optimiser vos workflows de sécurité offensive et de tests d'intrusion. Il propose une riche collection de one-liners, permettant des évaluations de sécurité rapides et efficaces.
 
-![HecateArsenal](img/HecateArsenal.png)
+![HecateArsenalDemo](img/HecateArsenal.png)
 
 ## Description 📝
 
