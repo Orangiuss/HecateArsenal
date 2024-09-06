@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"io/ioutil"
 	"os"
@@ -8,7 +9,6 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/manifoldco/promptui"
 	"gopkg.in/yaml.v2"
 )
 
@@ -36,7 +36,7 @@ func LoadOneLiners(dir string) ([]OneLiner, error) {
 			return err
 		}
 		// Vérifie que le fichier n'est pas un répertoire et a l'extension ".yaml"
-		if !info.IsDir() && strings.HasSuffix(info.Name(), ".yaml") {
+		if !info.IsDir() && strings.HasSuffix(info.Name(), ".yml") {
 			data, err := ioutil.ReadFile(path)
 			if err != nil {
 				return err
@@ -58,51 +58,57 @@ func LoadOneLiners(dir string) ([]OneLiner, error) {
 	return oneLiners, err
 }
 
-
 func main() {
-	// Load all one-liners from the directory "one-liners"
+	// Charger tous les one-liners depuis le répertoire "one-liners"
 	oneLiners, err := LoadOneLiners("one-liners")
 	if err != nil {
 		fmt.Printf("Error loading one-liners: %v\n", err)
 		return
 	}
 
+	reader := bufio.NewReader(os.Stdin)
+
 	for {
+		// Affichage des one-liners disponibles
 		fmt.Println("Available One-Liners:")
-		fmt.Println("----------------------")
+		fmt.Println("--------------------------------------------")
 		for _, ol := range oneLiners {
-			fmt.Printf("Name: %s\nDescription: %sID: %s\n\n", ol.Info.Name, ol.Info.Description, ol.ID)
+			fmt.Printf("%s - %s\n", ol.ID, ol.Info.Name)
 		}
+		fmt.Println("--------------------------------------------")
 
-		prompt := promptui.Prompt{
-			Label: "Enter a command (run <name_one_liner> or exit)",
-		}
-
-		result, err := prompt.Run()
+		// Lecture de l'entrée utilisateur
+		fmt.Print("H3cate4rsenal> ")
+		input, err := reader.ReadString('\n') // Lire jusqu'à ce que l'utilisateur appuie sur Entrée
 		if err != nil {
-			fmt.Printf("Prompt failed %v\n", err)
+			fmt.Printf("Error reading input: %v\n", err)
 			return
 		}
 
-		if strings.ToLower(result) == "exit" {
+		// Supprimer les espaces et nouvelles lignes autour de l'entrée
+		input = strings.TrimSpace(input)
+
+		// Si l'utilisateur entre "exit", sortir de la boucle
+		if strings.ToLower(input) == "exit" {
 			break
 		}
 
-		if strings.HasPrefix(result, "run ") {
-			oneLinerName := strings.TrimSpace(strings.TrimPrefix(result, "run "))
+		// Si l'utilisateur entre une commande "run <ID>", exécuter le one-liner
+		if strings.HasPrefix(input, "run ") {
+			oneLinerID := strings.TrimSpace(strings.TrimPrefix(input, "run "))
 			found := false
 			for _, ol := range oneLiners {
-				if ol.Info.Name == oneLinerName {
-					runOneLiner(ol.OneLiner.Cmd)
+				if ol.ID == oneLinerID {
+					runOneLiner(ol.OneLiner.Cmd) // Exécuter le one-liner correspondant
 					found = true
 					break
 				}
 			}
 			if !found {
-				fmt.Printf("One-liner '%s' not found.\n", oneLinerName)
+				fmt.Printf("One-liner '%s' not found.\n", oneLinerID)
 			}
 		} else {
-			fmt.Println("Invalid command. Please use 'run <name_one_liner>' or 'exit'.")
+			fmt.Println("Invalid command. Please use 'run <ID>' or 'exit'.")
 		}
 	}
 }

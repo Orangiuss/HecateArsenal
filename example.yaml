@@ -5,7 +5,7 @@ info:
   author: John Doe
   complexity: low, medium, high, expert
   description: |
-    This is an example one-liner
+    This is an example one-liner test
   metadata:
     verified: true
   tags: example-tag

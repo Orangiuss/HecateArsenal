@@ -1,0 +1,20 @@
+id: nmap-http-ports
+
+info:
+  name: Nmap HTTP Ports
+  author: Orangiuss
+  complexity: low
+  description: |
+    Scan for open HTTP ports using Nmap
+  metadata:
+    verified: true
+  tags: nmap, recon, enumeration, subfinder, tech-detect
+
+variables:
+  DOMAIN:
+    description: The target domain
+    required: true
+
+one-liner:
+  cmd: |
+    nmap -sV -p 80,443 {DOMAIN}

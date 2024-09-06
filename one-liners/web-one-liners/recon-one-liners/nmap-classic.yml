@@ -1,0 +1,23 @@
+id: nmap-classic
+
+info:
+  name: Nmap Classic
+  author: Orangiuss
+  complexity: low
+  description: |
+    Scan for open ports using Nmap, classic scan
+  metadata:
+    verified: true
+  tags: nmap, recon, enumeration, subfinder, tech-detect
+
+variables:
+  DOMAIN:
+    description: The target domain
+    required: false
+  IP:
+    description: The target IP
+    required: true
+
+one-liner:
+  cmd: |
+    nmap -sV {DOMAIN} {IP}

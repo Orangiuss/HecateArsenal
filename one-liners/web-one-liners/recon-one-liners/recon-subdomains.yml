@@ -10,6 +10,15 @@ info:
     verified: true
   tags: subdomains, recon, enumeration, subfinder, httpx, status-code, title, tech-detect, medium
 
+variables:
+  DOMAIN:
+    description: The target domain
+    required: true
+  STATUS_FILTER:
+    description: The status codes to filter
+    default: 404,403,401,400
+    required: false
+
 one-liner:
   cmd: |
-    subfinder -d {DOMAIN} -silent | httpx -silent -status-code -title -tech-detect -fc 404,403,401,400
+    subfinder -d {DOMAIN} -silent | httpx -silent -status-code -title -tech-detect -fc {STATUS_CODES}

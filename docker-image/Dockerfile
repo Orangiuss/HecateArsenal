@@ -1,0 +1,70 @@
+FROM kalilinux/kali-rolling:latest as kali_linux
+
+RUN apt update && apt -y install kali-linux-core
+RUN apt -y install kali-tools-top10
+RUN apt -y install kali-tools-web
+RUN apt -y install kali-tools-fuzzing
+
+# Tout les scanners de vulnérabilités wapiti, exploitdb, zap, spiderfoot...
+RUN apt -y install kali-tools-identify
+
+# Passwords crack with hashcat, john, seclists...
+RUN apt -y install kali-tools-passwords
+
+# Ajout pour l'OSINT
+RUN apt -y install kali-tools-information-gathering
+
+# Ajout pour SET parce que c'est de la bombe
+RUN apt -y install kali-tools-social-engineering
+
+# Ajout de pip3
+RUN apt -y install python3-pip
+
+# Ajout de zapcli pour l'outil zap
+RUN pip3 install --upgrade zapcli
+
+# Update
+RUN apt -y update
+RUN apt -y upgrade
+RUN apt -y install inetutils-ping
+
+# Audit de configuration outils
+RUN mkdir audit_config
+RUN git clone https://github.com/drwetter/testssl.sh audit_config/testssl.sh
+RUN apt -y install dnsutils
+
+# Add JWT_Tool
+# RUN git clone https://github.com/ticarpi/jwt_tool
+# RUN python3 -m pip install termcolor cprint pycryptodomex requests
+
+RUN git clone https://github.com/EdouardRouch/tls_checker audit_config/tls_checker
+
+# Audit ssh
+# RUN git clone https://github.com/jtesta/ssh-audit.git audit_config/ssh-audit
+
+# Dezip rockyou.txt
+RUN gzip -d /usr/share/wordlists/rockyou.txt.gz
+
+# Go for projectdiscovery tools
+RUN apt -y install gccgo-go
+
+RUN apt -y install nuclei
+
+RUN nuclei
+
+RUN apt -y install golang
+
+RUN git clone https://github.com/hahwul/dalfox
+WORKDIR /dalfox
+RUN go install
+RUN go build
+RUN cp dalfox /usr/bin/
+RUN dalfox version
+
+# Install ghauri
+RUN git clone https://github.com/r0oth3x49/ghauri.git
+RUN python3 -m pip install --upgrade -r ghauri/requirements.txt
+RUN python3 ghauri/setup.py install
+
+RUN apt -y install nano
+RUN apt-get -y update
