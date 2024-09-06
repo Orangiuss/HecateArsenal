@@ -9,7 +9,9 @@ info:
     Crack passwords using John the Ripper - Simple one-liner
   metadata:
     verified: true
-  tags: john, password-cracking, md5, sha1, sha256, sha512, des, beginner, low, simple
+  tags: 
+    - john
+    - password-cracking
 
 one-liner:
   cmd: |

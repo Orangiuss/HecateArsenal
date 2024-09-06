@@ -8,7 +8,8 @@ info:
     This is an example one-liner
   metadata:
     verified: true
-  tags: example-tag
+  tags: 
+    - example-tag
 
 one-liner:
   cmd: |

@@ -9,7 +9,13 @@ info:
     Scan for open HTTP ports using Nmap
   metadata:
     verified: true
-  tags: nmap, recon, enumeration, subfinder, tech-detect
+  tags:
+    - nmap
+    - recon
+    - port-scanning
+    - beginner
+    - low
+    - simple
 
 variables:
   DOMAIN:

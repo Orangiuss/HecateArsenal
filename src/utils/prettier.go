@@ -1,19 +1,9 @@
 package utils
 
-import (
-	"fmt"
-	"strconv"
-)
+import "fmt"
 
-func PrintHelloWorld() {
-	printColor("Hello, World!", 32)
-}
-
-func printColor(s string, n int) {
-	fmt.Println("\033[" + strconv.Itoa(n) + "m" + s + "\033[0m")
-}
-
-func PrintAscii(color string, variable bool) {
+// printAscii est une fonction qui permet d'afficher un texte en ASCII, avec une couleur spécifique, variable oui ou non, default oui, couleur par défaut rouge
+func printAscii3(color string, variable bool) {
 	text := `
 	_   _                _          _                              _ 
 	| | | | ___  ___ __ _| |_ ___   / \\   _ __ ___  ___ _ __   __ _| |

@@ -9,7 +9,16 @@ info:
     Enumerate subdomains using Subfinder and check their status codes, titles and technologies using httpx
   metadata:
     verified: true
-  tags: subdomains, recon, enumeration, subfinder, httpx, status-code, title, tech-detect, medium
+  tags: 
+    - recon
+    - enumeration
+    - subdomains
+    - subfinder
+    - httpx
+    - status-code
+    - title
+    - tech-detect
+    - medium
 
 variables:
   DOMAIN:

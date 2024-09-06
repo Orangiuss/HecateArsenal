@@ -3,27 +3,29 @@ package main
 import (
 	"fmt"
 	one_liners "hecatearsenal/one-liners"
-	"hecatearsenal/plan_organiser"
-	"hecatearsenal/utils"
+	utils_ha "hecatearsenal/utils"
 )
 
 func main() {
-	// Appeler une fonction du package one_liners
+	// Appeler un fonction du package utils
+	utils_ha.PrintHelloWorld()
+	utils_ha.PrintAscii("32", false)
+
 	oneLiners, err := one_liners.LoadOneLiners("one-liners")
 	if err != nil {
-		fmt.Printf("Error loading one-liners: %v\n", err)
+		fmt.Printf("Erreur de chargement des one-liners: %v\n", err)
 		return
 	}
+	// Afficher le nombre de one-liners chargés
+	fmt.Printf("Nombre de one-liners chargés: %d\n", len(oneLiners))
 
-	// Appeler une fonction du package utils
-	utils.PrintHelloWorld()
+	// Afficher tous les one-liners disponibles
+	one_liners.ShowOneLiners(oneLiners)
 
-	// Affichage des one-liners
-	for _, ol := range oneLiners {
-		fmt.Printf("One-Liner: %s\n", ol.Info.Name)
+	// Exécuter un one-liner avec des variables
+	vars := map[string]string{
+		"DOMAIN":       "example.com",
+		"STATUS_CODES": "200,301,302",
 	}
-
-	// Afficher les one-liners dans une table
-	one_liners.ShowOneLiners(oneLiners, "", "")
-	PlanOrganiser := plan_organiser.NewPlanOrganiser()
+	one_liners.RunOneLiner(oneLiners[0].OneLiner.Cmd, vars)
 }
