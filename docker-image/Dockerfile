@@ -20,8 +20,8 @@ RUN apt -y install kali-tools-social-engineering
 # Ajout de pip3
 RUN apt -y install python3-pip
 
-# Ajout de zapcli pour l'outil zap
-RUN pip3 install --upgrade zapcli
+# # Ajout de zapcli pour l'outil zap
+# RUN pip3 install --upgrade zapcli
 
 # Update
 RUN apt -y update

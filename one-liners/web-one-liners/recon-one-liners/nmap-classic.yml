@@ -2,7 +2,8 @@ id: nmap-classic
 
 info:
   name: Nmap Classic
-  author: Orangiuss
+  default-category: recon
+  author: Orangius
   complexity: low
   description: |
     Scan for open ports using Nmap, classic scan

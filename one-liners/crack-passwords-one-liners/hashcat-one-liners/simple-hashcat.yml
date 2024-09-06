@@ -2,6 +2,7 @@ id: simple-hashcat
 
 info:
   name: Simple Hashcat
+  default-category: crack-passwords
   author: Orangiuss
   complexity: low
   description: |

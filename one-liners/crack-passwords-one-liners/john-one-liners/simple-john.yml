@@ -3,6 +3,7 @@ id: simple-john
 info:
   name: Simple John
   author: Orangiuss
+  default-category: crack-passwords
   complexity: low
   description: |
     Crack passwords using John the Ripper - Simple one-liner

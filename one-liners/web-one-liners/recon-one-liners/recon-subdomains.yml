@@ -2,7 +2,8 @@ id: recon-subdomains
 
 info:
   name: Recon Subdomains
-  author: Orangiuss
+  default-category: recon
+  author: Orangius
   complexity: medium
   description: |
     Enumerate subdomains using Subfinder and check their status codes, titles and technologies using httpx

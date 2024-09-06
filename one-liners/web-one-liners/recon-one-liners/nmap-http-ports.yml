@@ -2,7 +2,8 @@ id: nmap-http-ports
 
 info:
   name: Nmap HTTP Ports
-  author: Orangiuss
+  default-category: recon
+  author: Orangius
   complexity: low
   description: |
     Scan for open HTTP ports using Nmap
