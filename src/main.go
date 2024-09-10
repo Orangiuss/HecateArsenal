@@ -11,7 +11,7 @@ func main() {
 	utils_ha.PrintHelloWorld()
 	utils_ha.PrintAscii("32", false)
 
-	oneLiners, err := one_liners.LoadOneLiners("one-liners")
+	oneLiners, err := one_liners.LoadOneLiners("one-liners-templates")
 	if err != nil {
 		fmt.Printf("Erreur de chargement des one-liners: %v\n", err)
 		return
