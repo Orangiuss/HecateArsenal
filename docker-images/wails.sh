@@ -58,9 +58,12 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-# Default behavior: build and run the Docker container
+# Allow X11 forwarding
+xhost +local:docker
+
+# Default behavior: build and run the Docker container with DISPLAY and X11 forwarding
 rebuild_image
-docker run -d -p 5555:5555 -p 5173:5173 -v tmpdocker:/app --name $IMAGE_NAME $IMAGE_NAME 
+docker run -d -p 5555:5555 -p 5173:5173 -v tmpdocker:/app -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix --name $IMAGE_NAME $IMAGE_NAME
 
 docker exec -it $IMAGE_NAME /bin/bash -c "bash < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)"
 docker exec -it $IMAGE_NAME /bin/bash -c "source /root/.gvm/scripts/gvm; gvm install go1.20"
