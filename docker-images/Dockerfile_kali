@@ -68,3 +68,5 @@ RUN python3 ghauri/setup.py install
 
 RUN apt -y install nano
 RUN apt-get -y update
+
+CMD ["tail", "-f", "/dev/null"]

@@ -1,0 +1,64 @@
+# Base image with Go
+FROM node:latest
+
+# Install golang:1.23.1-bullseye
+RUN apt-get update && \
+    apt-get install -y \
+    golang
+
+# Install system dependencies for Wails
+RUN apt-get update && \
+    apt-get install -y \
+    build-essential \
+    libgtk-3-dev \
+    libwebkit2gtk-4.0-dev \
+    nsis \
+    curl \
+    git \
+    npm
+
+# npm install -g @vue/cli
+RUN npm install -g @vue/cli
+
+RUN apt-get install -y bsdmainutils
+RUN apt-get install -y bison
+
+# Install GVM
+RUN bash < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
+
+# install go version 1.20
+RUN gvm install go1.20
+RUN gvm use go1.20
+
+# Set the GOPATH environment variable
+ENV GOPATH /root/go
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Install Wails CLI
+RUN go install github.com/wailsapp/wails/v2/cmd/wails@latest
+
+# Copy your Go project to the container
+COPY . .
+
+# Add /root/go/bin to the PATH
+ENV PATH="/root/go/bin:${PATH}"
+
+# Run Wails doctor to verify installation
+RUN wails doctor
+
+# Nano installation
+RUN apt-get update && \
+    apt-get install -y \
+    nano
+
+# Add nanorc
+RUN curl https://raw.githubusercontent.com/scopatz/nanorc/master/install.sh | sh
+
+# Update and upgrade the system
+RUN apt-get update && \
+    apt-get upgrade -y
+
+# Infinitely run the Docker container
+CMD ["tail", "-f", "/dev/null"]
