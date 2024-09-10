@@ -1,6 +1,6 @@
 package plan_organiser
 
-import "hecatearsenal/one_liners"
+import one_liners "hecatearsenal/one_liners"
 
 // PlanOrganiser est une structure qui contient une liste de méthodologies pour le pentest, avec les one-liners du module one_liners
 // Nous allons avoir les étapes suivantes:

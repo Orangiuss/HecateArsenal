@@ -14,6 +14,10 @@
 - Traduction objet / document en base de données
 - Librairie base de données : Neo4j
 
+https://dev.to/makepad/creating-a-simple-go-application-for-crud-operations-with-neo4j-and-docker-9nh
+https://neo4j.com/docs/go-manual/current/
+https://pkg.go.dev/github.com/neo4j/neo4j-go-driver/v5
+
 ### GUI Project ?
 
 - Wails : https://wails.io/

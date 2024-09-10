@@ -78,6 +78,13 @@ HecateArsenal provides a comprehensive arsenal of one-liners covering various se
 
 To add custom one-liners, create new Python functions within `hecatearsenal.py`, following the existing structure. Ensure proper documentation and error handling.
 
+## Roadmap 🗺
+
+- December 2024️ : **Version 1.0** - Initial Release with Core Features (GUI + CLI)
+- January 2025️ : **Version 1.1** - Bug Fixes and Enhancements
+- Summer 2025️ : **Version 1.2** - New Features and Improvements
+- ? : **Version 2.0** - Advanced Features and Modules + TUI project
+
 ## Disclaimer ⚠️
 
 HecateArsenal is intended for authorized penetration testing and security assessments. Misuse of this tool is illegal and unethical. The authors are not responsible for any unauthorized activities.
