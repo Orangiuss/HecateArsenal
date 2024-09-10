@@ -1,5 +1,33 @@
 # TO-DO file
 
+### Commandes de base pour le projet CLI HecateArsenal
+
+hecatearsenal
+ha-cli : Command Line Interface
+ha-gui : Graphical User Interface
+ha-tui : Text User Interface
+
+ha-cli ol use <one-liner_name>
+ha-cli ol list
+ha-cli ol search <one-liner_name>
+ha-cli ol show <one-liner_name>
+ha-cli tool show <tool_name>
+ha-cli tool list
+ha-cli tool search <tool_name>
+ha-cli tool use <tool_name>
+ha-cli tool install <tool_name>
+
+(ol = one-liner)
+
+### Fonctionnalités de base pour le projet GUI HecateArsenal
+
+- Interface graphique pour les one-liners
+- Interface graphique pour les outils (marketplace, installation, configuration, exécution avec forge de commandes, suite de commandes/d'outils)
+- Interface graphique pour les rapports (exportation, partage, stockage, visualisation)
+- Interface graphique pour brute-forcing (dictionnaires, attaques par force brute, attaques par dictionnaire)
+- Interface graphique pour la gestion des sessions (stockage, partage, visualisation, exportation)
+
+
 ### Base de données
 
 - Choix de la base de données? : Neo4j
