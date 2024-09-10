@@ -53,3 +53,8 @@ https://pkg.go.dev/github.com/neo4j/neo4j-go-driver/v5
 
 ### TUI Projet ?
 - https://github.com/charmbracelet/bubbletea
+
+### Maybe interesting for the project ?
+
+- gomplate : https://github.com/hairyhenderson/gomplate
+- 
