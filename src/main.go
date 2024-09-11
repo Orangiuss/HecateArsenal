@@ -2,14 +2,12 @@ package main
 
 import (
 	"fmt"
-	one_liners "hecatearsenal/one-liners"
-	utils_ha "hecatearsenal/utils"
+	one_liners "hecate/core/one-liners"
+	utils_hecate "hecate/core/utils"
 )
 
 func main() {
-	// Appeler un fonction du package utils
-	utils_ha.PrintHelloWorld()
-	utils_ha.PrintAscii("32", false)
+	utils_hecate.PrintAscii("32", false)
 
 	oneLiners, err := one_liners.LoadOneLiners("one-liners-templates")
 	if err != nil {
@@ -28,4 +26,22 @@ func main() {
 		"STATUS_CODES": "200,301,302",
 	}
 	one_liners.RunOneLiner(oneLiners[0].OneLiner.Cmd, vars)
+
+	data := "example&%$"
+	fmt.Println("MD5:", utils_hecate.HashMD5(data))
+	fmt.Println("SHA256:", utils_hecate.HashSHA256(data))
+	fmt.Println("NTLM:", utils_hecate.HashNTLM(data))
+
+	bcryptHash, _ := utils_hecate.HashBcrypt(data)
+	fmt.Println("Bcrypt:", bcryptHash)
+
+	base64Encoded := utils_hecate.EncodeBase64(data)
+	fmt.Println("Base64 Encoded:", base64Encoded)
+	base64Decoded, _ := utils_hecate.DecodeBase64(base64Encoded)
+	fmt.Println("Base64 Decoded:", base64Decoded)
+
+	urlEncoded := utils_hecate.URLEncode(data)
+	fmt.Println("URL Encoded:", urlEncoded)
+	urlDecoded, _ := utils_hecate.URLDecode(urlEncoded)
+	fmt.Println("URL Decoded:", urlDecoded)
 }
