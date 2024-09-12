@@ -2,46 +2,50 @@ package main
 
 import (
 	"fmt"
-	one_liners "hecate/core/one-liners"
-	utils_hecate "hecate/core/utils"
+
+	one_liners "github.com/Orangiuss/hecate/src/core/one-liners"
+
+	"github.com/Orangiuss/hecate/src/core/plan_organiser"
 )
 
 func main() {
-	utils_hecate.PrintAscii("32", false)
+	// Créer une nouvelle instance de PlanOrganiser
+	plan := plan_organiser.NewPlanOrganiser()
 
-	oneLiners, err := one_liners.LoadOneLiners("one-liners-templates")
+	// Créer un OneLiner d'exemple
+	exampleOneLiner := one_liners.OneLiner{
+		ID: "example-1",
+		Info: one_liners.Info{
+			Name:        "Nmap Scan",
+			Description: "Scan réseau basique avec Nmap",
+			Category:    "Reconnaissance",
+			Tags:        []string{"nmap", "reconnaissance"},
+		},
+		OneLiner: one_liners.OneLinerCmd{
+			Cmd: "nmap -sP 192.168.0.0/24",
+		},
+	}
+
+	// Ajouter le OneLiner à la phase de reconnaissance
+	plan.AddOneLiner(exampleOneLiner, "reconnaissance")
+
+	// Sauvegarder le plan
+	err := plan.SavePlan("mon-plan.yaml")
 	if err != nil {
-		fmt.Printf("Erreur de chargement des one-liners: %v\n", err)
+		fmt.Println("Erreur lors de la sauvegarde du plan:", err)
 		return
 	}
-	// Afficher le nombre de one-liners chargés
-	fmt.Printf("Nombre de one-liners chargés: %d\n", len(oneLiners))
 
-	// Afficher tous les one-liners disponibles
-	one_liners.ShowOneLiners(oneLiners)
-
-	// Exécuter un one-liner avec des variables
-	vars := map[string]string{
-		"DOMAIN":       "example.com",
-		"STATUS_CODES": "200,301,302",
+	// Charger le plan à partir d'un fichier
+	loadedPlan, err := plan_organiser.LoadPlan("mon-plan.yaml")
+	if err != nil {
+		fmt.Println("Erreur lors du chargement du plan:", err)
+		return
 	}
-	one_liners.RunOneLiner(oneLiners[0].OneLiner.Cmd, vars)
 
-	data := "example&%$"
-	fmt.Println("MD5:", utils_hecate.HashMD5(data))
-	fmt.Println("SHA256:", utils_hecate.HashSHA256(data))
-	fmt.Println("NTLM:", utils_hecate.HashNTLM(data))
+	// Exécuter le plan
+	loadedPlan.RunPlan()
 
-	bcryptHash, _ := utils_hecate.HashBcrypt(data)
-	fmt.Println("Bcrypt:", bcryptHash)
-
-	base64Encoded := utils_hecate.EncodeBase64(data)
-	fmt.Println("Base64 Encoded:", base64Encoded)
-	base64Decoded, _ := utils_hecate.DecodeBase64(base64Encoded)
-	fmt.Println("Base64 Decoded:", base64Decoded)
-
-	urlEncoded := utils_hecate.URLEncode(data)
-	fmt.Println("URL Encoded:", urlEncoded)
-	urlDecoded, _ := utils_hecate.URLDecode(urlEncoded)
-	fmt.Println("URL Decoded:", urlDecoded)
+	// Afficher le plan chargé
+	fmt.Printf("Plan chargé : %+v\n", loadedPlan)
 }

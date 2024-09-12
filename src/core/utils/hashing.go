@@ -9,6 +9,7 @@ import (
 	"encoding/hex"
 	"fmt"
 	"net/url"
+	"regexp"
 	"strings"
 
 	"golang.org/x/crypto/bcrypt"
@@ -104,6 +105,39 @@ func URLDecode(data string) (string, error) {
 	return decoded, nil
 }
 
+// To Hex - Converts a string to its hex representation
+func ToHex(data string) string {
+	return hex.EncodeToString([]byte(data))
+}
+
+// From Hex - Decodes a hex string back to its original form
+func FromHex(hexString string) (string, error) {
+	bytes, err := hex.DecodeString(hexString)
+	if err != nil {
+		return "", err
+	}
+	return string(bytes), nil
+}
+
+// To Hex Dump - Converts the input data to a human-readable hex dump format
+func ToHexDump(data string) string {
+	dump := hex.Dump([]byte(data))
+	return dump
+}
+
+// From Hex Dump - Converts a hex dump back to its original form
+func FromHexDump(hexDump string) (string, error) {
+	// Removing newlines and spaces to handle typical hex dump formatting
+	cleaned := strings.ReplaceAll(hexDump, "\n", "")
+	cleaned = strings.ReplaceAll(cleaned, " ", "")
+
+	bytes, err := hex.DecodeString(cleaned)
+	if err != nil {
+		return "", err
+	}
+	return string(bytes), nil
+}
+
 // Utility to handle multiple hashes in one function
 func Hash(data, method string) (string, error) {
 	method = strings.ToLower(method)
@@ -123,6 +157,24 @@ func Hash(data, method string) (string, error) {
 	default:
 		return "", fmt.Errorf("unsupported hashing method: %s", method)
 	}
+}
+
+// RegexMatch - Verifies if a string matches a given regex pattern
+func RegexMatch(pattern, input string) (bool, error) {
+	re, err := regexp.Compile(pattern)
+	if err != nil {
+		return false, err
+	}
+	return re.MatchString(input), nil
+}
+
+// RegexReplace - Replaces all instances of a regex pattern in a string with a replacement
+func RegexReplace(pattern, input, replacement string) (string, error) {
+	re, err := regexp.Compile(pattern)
+	if err != nil {
+		return "", err
+	}
+	return re.ReplaceAllString(input, replacement), nil
 }
 
 func showsAllsHashingEncoding() {
