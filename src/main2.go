@@ -2,8 +2,9 @@ package main
 
 import (
 	"fmt"
-	one_liners "hecate/core/one-liners"
-	utils_hecate "hecate/core/utils"
+
+	one_liners "github.com/Orangiuss/hecate/src/core/one-liners"
+	utils_hecate "github.com/Orangiuss/hecate/src/core/utils"
 )
 
 func main() {

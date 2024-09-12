@@ -8,7 +8,7 @@ import (
 	"github.com/Orangiuss/hecate/src/core/plan_organiser"
 )
 
-func main() {
+func main1() {
 	// Créer une nouvelle instance de PlanOrganiser
 	plan := plan_organiser.NewPlanOrganiser()
 

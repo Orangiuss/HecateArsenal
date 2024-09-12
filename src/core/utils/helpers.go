@@ -3,6 +3,8 @@ package utils
 import (
 	"fmt"
 	"strconv"
+
+	"github.com/mbndr/figlet4go"
 )
 
 func PrintHelloWorld() {
@@ -14,18 +16,16 @@ func printColor(s string, n int) {
 }
 
 func PrintAscii(color string, variable bool) {
-	text := `
-	_   _                _          _                              _ 
-	| | | | ___  ___ __ _| |_ ___   / \\   _ __ ___  ___ _ __   __ _| |
-	| |_| |/ _ \/ __/ _` + "`" + ` | __/ _ \/ _ \ | '__/ __|/ _ \ '_ \ / _` + "`" + ` | |
-	|  _  |  __/ (_| (_| | ||  __// ___ \| |  \__ \  __/ | | | (_| | |
-	|_| |_|\___|\___\__,_|\__\___/_/   \_\_|  |___/\___|_| |_|\__,_|_|
-																	  
-	`
+	text := "Hecate"
+	ascii := figlet4go.NewAsciiRender()
 
-	if variable {
-		fmt.Printf("\033[31m%s\033[0m", text)
-	} else {
-		fmt.Printf("\033[%sm%s\033[0m", color, text)
+	// Ajouter des options
+	options := figlet4go.NewRenderOptions()
+	options.FontColor = []figlet4go.Color{
+		figlet4go.ColorRed,
 	}
+
+	// Rendu du texte
+	renderStr, _ := ascii.RenderOpts(text, options)
+	fmt.Println(renderStr)
 }
