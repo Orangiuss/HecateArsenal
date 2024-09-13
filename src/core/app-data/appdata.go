@@ -39,15 +39,18 @@ func Init() error {
 	}
 
 	var err error
-	oneLiners, err = ol.LoadOneLiners("one-liners-templates")
+	oneLiners, err = ol.LoadOneLiners("data/one-liners-templates")
 	if err != nil {
 		return err
 	}
 
 	// Charger le registre des outils
-	registry, err := mp.LoadRegistry("src/core/arsenal/tools.json")
+	registry, err = mp.LoadRegistry("data/tools.json")
 	if err != nil {
 		log.Fatal(err)
+	}
+	if registry == nil {
+		return fmt.Errorf("le registre des outils est vide")
 	}
 
 	// Charger les outils depuis le registre

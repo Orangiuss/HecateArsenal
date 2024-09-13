@@ -8,7 +8,6 @@ import (
 )
 
 func getCommandTool(registry *mp.Registry) *cobra.Command {
-	// Add the type argument for the ol.OneLiner slice
 
 	// Define the one-liner command with oneliner or ol alias
 	var oneLinerCmd = &cobra.Command{

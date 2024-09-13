@@ -107,7 +107,7 @@ func runCommand(cmdStr, toolName, action string) error {
 
 // ShowTools affiche les outils disponibles dans le registry.
 func ShowTools(r *Registry) {
-	tools := r.Tools
+	tools, _ := r.GetTools()
 	ShowToolsTools(tools)
 }
 
