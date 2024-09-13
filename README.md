@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="img/logo.png" alt="Hecate" width="200px">
+  <img src="img/logo_vf.png" alt="Hecate" width="200px">
   <br>
 </h1>
 
