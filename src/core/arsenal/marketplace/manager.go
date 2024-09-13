@@ -2,7 +2,10 @@ package marketplace
 
 import (
 	"fmt"
+	"os"
 	"os/exec"
+
+	"github.com/olekukonko/tablewriter"
 )
 
 // // ManageTool exécute une ou plusieurs commandes pour une action donnée (install, remove, update) d'un outil en fonction du gestionnaire de paquets.
@@ -101,20 +104,40 @@ func runCommand(cmdStr, toolName, action string) error {
 	return nil
 }
 
-// ShowTools affiche les informations sur les outils disponibles.
+// ShowTools affiche les informations sur les outils disponibles dans un format tabulaire.
 func ShowTools(tools []Tool) {
-	for _, tool := range tools {
-		fmt.Printf("ID: %s\n", tool.ID)
-		fmt.Printf("Name: %s\n", tool.Name)
-		fmt.Printf("Description: %s\n", tool.Description)
-		fmt.Printf("Version: %s\n", tool.Version)
-		fmt.Printf("Author: %s\n", tool.Author)
-		fmt.Printf("Commands: %v\n", tool.TestCommands)
-		fmt.Printf("Categories: %v\n", tool.Categories)
-		fmt.Printf("Tags: %v\n", tool.Tags)
-		fmt.Printf("Metadata: %+v\n", tool.Metadata)
-		fmt.Println()
+	table := tablewriter.NewWriter(os.Stdout)
+	table.SetHeader([]string{"ID", "Name", "Description", "Version", "Author", "Commands", "Categories", "Tags", "Metadata"})
+
+	if len(tools) == 0 {
+		fmt.Println("Aucun outil trouvé.")
+		return
 	}
+
+	for _, tool := range tools {
+		commands := ""
+		for _, cmd := range tool.TestCommands {
+			commands += cmd + "; "
+		}
+
+		metadata := fmt.Sprintf("License: %s, Source: %s, Logo: %s", tool.Metadata.License, tool.Metadata.Source, tool.Metadata.Logo_url)
+
+		// Ajouter les informations de l'outil dans la table
+		table.Append([]string{
+			tool.ID,
+			tool.Name,
+			tool.Description,
+			tool.Version,
+			tool.Author,
+			commands,
+			fmt.Sprintf("%v", tool.Categories),
+			fmt.Sprintf("%v", tool.Tags),
+			metadata,
+		})
+	}
+
+	// Afficher la table
+	table.Render()
 }
 
 // FindToolsByCategory recherche les outils par catégorie dans le registry.

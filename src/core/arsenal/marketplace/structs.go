@@ -20,6 +20,7 @@ type Metadata struct {
 	Description string `json:"description"`
 	License     string `json:"license"`
 	Logo_url    string `json:"logo-url"`
+	Source      string `json:"source"`
 }
 
 // PackageManagerActions représente les actions pour un gestionnaire de paquets spécifique

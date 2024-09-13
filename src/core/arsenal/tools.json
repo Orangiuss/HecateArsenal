@@ -4,7 +4,7 @@
             "id": "1",
             "name": "nmap",
             "description": "Network exploration tool and security/port scanner.",
-            "version": "7.91",
+            "version": "7.92",
             "author": "Fyodor",
             "test-commands": ["nmap -V"],
             "packages-managers": ["apt", "yum", "pacman", "snap"],

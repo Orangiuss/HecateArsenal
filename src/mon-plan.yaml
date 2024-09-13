@@ -1,0 +1,20 @@
+reconnaissance:
+- id: example-1
+  info:
+    name: Nmap Scan
+    description: Scan réseau basique avec Nmap
+    default-category: Reconnaissance
+    author: ""
+    complexity: ""
+    metadata:
+      verified: false
+    tags:
+    - nmap
+    - reconnaissance
+  variables: {}
+  one-liner:
+    cmd: nmap -sP 192.168.0.0/24
+enumeration: []
+exploitation: []
+postexploitation: []
+rapport: []
