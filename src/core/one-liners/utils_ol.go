@@ -10,3 +10,23 @@ func ConvertVariablesToMap(vars map[string]Variable) map[string]string {
 	}
 	return result
 }
+
+// GetOneLinerByName retourne un one-liner en fonction de son nom
+func GetOneLinerByName(oneLiners []OneLiner, name string) OneLiner {
+	for _, ol := range oneLiners {
+		if ol.Info.Name == name {
+			return ol
+		}
+	}
+	return OneLiner{}
+}
+
+// GetOneLinerByID retourne un one-liner en fonction de son ID
+func GetOneLinerByID(oneLiners []OneLiner, id string) OneLiner {
+	for _, ol := range oneLiners {
+		if ol.ID == id {
+			return ol
+		}
+	}
+	return OneLiner{}
+}

@@ -111,6 +111,117 @@
                 "source": "https://github.com/vanhauser-thc/thc-hydra",
                 "logo-url": "https://www.kali.org/tools/hydra/images/hydra-logo.svg"
             }
+        },
+        {
+            "id": "4",
+            "name": "metasploit",
+            "description": "Penetration Testing Framework",
+            "version": "6.0",
+            "author": "Rapid7",
+            "test-commands": ["msfconsole --version"],
+            "actions": {
+                "apt": {
+                    "install": ["apt-get install -y metasploit-framework"],
+                    "remove": ["apt-get remove -y metasploit-framework"],
+                    "update": ["apt-get update && apt-get upgrade -y metasploit-framework"]
+                },
+                "yum": {
+                    "install": ["yum install -y metasploit-framework"],
+                    "remove": ["yum remove -y metasploit-framework"],
+                    "update": ["yum update -y metasploit-framework"]
+                },
+                "pacman": {
+                    "install": ["pacman -S --noconfirm metasploit"],
+                    "remove": ["pacman -R --noconfirm metasploit"],
+                    "update": ["pacman -Syu metasploit"]
+                },
+                "snap": {
+                    "install": ["snap install metasploit"],
+                    "remove": ["snap remove metasploit"],
+                    "update": ["snap refresh metasploit"]
+                }
+            },
+            "categories": ["Penetration Testing"],
+            "tags": ["exploitation", "framework"],
+            "metadata": {
+                "license": "Metasploit License",
+                "source": "https://www.metasploit.com/",
+                "logo-url": "https://www.kali.org/tools/metasploit-framework/images/metasploit-framework-logo.svg"
+            }
+        },
+        {
+            "id": "5",
+            "name": "wireshark",
+            "description": "Network Protocol Analyzer",
+            "version": "3.2",
+            "author": "The Wireshark Team",
+            "test-commands": ["wireshark --version"],
+            "actions": {
+                "apt": {
+                    "install": ["apt-get install -y wireshark"],
+                    "remove": ["apt-get remove -y wireshark"],
+                    "update": ["apt-get update && apt-get upgrade -y wireshark"]
+                },
+                "yum": {
+                    "install": ["yum install -y wireshark"],
+                    "remove": ["yum remove -y wireshark"],
+                    "update": ["yum update -y wireshark"]
+                },
+                "pacman": {
+                    "install": ["pacman -S --noconfirm wireshark-gtk"],
+                    "remove": ["pacman -R --noconfirm wireshark-gtk"],
+                    "update": ["pacman -Syu wireshark-gtk"]
+                },
+                "snap": {
+                    "install": ["snap install wireshark"],
+                    "remove": ["snap remove wireshark"],
+                    "update": ["snap refresh wireshark"]
+                }
+            },
+            "categories": ["Network Analysis"],
+            "tags": ["network", "protocol", "analyzer"],
+            "metadata": {
+                "license": "Wireshark License",
+                "source": "https://www.wireshark.org/",
+                "logo-url": "https://www.wireshark.org/assets/images/logo.png"
+            }
+        },
+        {
+            "id": "6",
+            "name": "john-the-ripper",
+            "description": "Password Cracker",
+            "version": "1.9.0",
+            "author": "Openwall",
+            "test-commands": ["john --version"],
+            "actions": {
+                "apt": {
+                    "install": ["apt-get install -y john"],
+                    "remove": ["apt-get remove -y john"],
+                    "update": ["apt-get update && apt-get upgrade -y john"]
+                },
+                "yum": {
+                    "install": ["yum install -y john"],
+                    "remove": ["yum remove -y john"],
+                    "update": ["yum update -y john"]
+                },
+                "pacman": {
+                    "install": ["pacman -S --noconfirm john"],
+                    "remove": ["pacman -R --noconfirm john"],
+                    "update": ["pacman -Syu john"]
+                },
+                "snap": {
+                    "install": ["snap install john"],
+                    "remove": ["snap remove john"],
+                    "update": ["snap refresh john"]
+                }
+            },
+            "categories": ["Password Cracking"],
+            "tags": ["password", "cracker"],
+            "metadata": {
+                "license": "John the Ripper License",
+                "source": "https://www.openwall.com/john/",
+                "logo-url": "https://www.openwall.com/john/images/john-logo.png"
+            }
         }
     ]
 }

@@ -11,10 +11,11 @@ type Variable struct {
 }
 
 type OneLiner struct {
-	ID        string              `yaml:"id"`
-	Info      Info                `yaml:"info"`
-	Variables map[string]Variable `yaml:"variables"`
-	OneLiner  OneLinerCmd         `yaml:"one-liner"`
+	ID          string              `yaml:"id"`
+	Info        Info                `yaml:"info"`
+	Variables   map[string]Variable `yaml:"variables"`
+	OneLiner    OneLinerCmd         `yaml:"one-liner"`
+	ToolsNeeded []string            `yaml:"tools-needed"`
 }
 
 type Info struct {

@@ -177,7 +177,7 @@ func RegexReplace(pattern, input, replacement string) (string, error) {
 	return re.ReplaceAllString(input, replacement), nil
 }
 
-func showsAllsHashingEncoding() {
+func ShowsAllsHashingEncoding() {
 	data := "example"
 	fmt.Println("MD5:", HashMD5(data))
 	fmt.Println("SHA256:", HashSHA256(data))

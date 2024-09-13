@@ -38,9 +38,6 @@ func LoadOneLiners(directory string) ([]OneLiner, error) {
 			return nil
 		}
 
-		// Utiliser le chemin du fichier comme identifiant (ID) du one-liner
-		oneLiner.ID = info.Name()
-
 		// Ajouter le one-liner à la liste
 		oneLiners = append(oneLiners, oneLiner)
 

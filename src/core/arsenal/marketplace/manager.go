@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
+	"strings"
 
 	"github.com/olekukonko/tablewriter"
 )
@@ -104,10 +105,46 @@ func runCommand(cmdStr, toolName, action string) error {
 	return nil
 }
 
-// ShowTools affiche les informations sur les outils disponibles dans un format tabulaire.
-func ShowTools(tools []Tool) {
+// ShowTools affiche les outils disponibles dans le registry.
+func ShowTools(r *Registry) {
+	tools := r.Tools
+	ShowToolsTools(tools)
+}
+
+// ShowToolsByCategory affiche les outils par catégorie dans le registry.
+func ShowToolsByCategory(r *Registry, category string) {
+	tools := r.FindToolsByCategory(category)
+	if len(tools) == 0 {
+		fmt.Printf("Aucun outil trouvé pour la catégorie: %s\n", category)
+		return
+	}
+	ShowTools(&Registry{Tools: tools})
+}
+
+// ShowToolsByTag affiche les outils par tag dans le registry.
+func ShowToolsByTag(r *Registry, tag string) {
+	tools := r.FindToolsByTag(tag)
+	if len(tools) == 0 {
+		fmt.Printf("Aucun outil trouvé pour le tag: %s\n", tag)
+		return
+	}
+	ShowTools(&Registry{Tools: tools})
+}
+
+// ShowToolsByAuthor affiche les outils par auteur dans le registry.
+func ShowToolsByAuthor(r *Registry, author string) {
+	tools := r.FindToolsByAuthor(author)
+	if len(tools) == 0 {
+		fmt.Printf("Aucun outil trouvé pour l'auteur: %s\n", author)
+		return
+	}
+	ShowTools(&Registry{Tools: tools})
+}
+
+// ShowToolsTools affiche les outils, sans passer par le registry.
+func ShowToolsTools(tools []Tool) {
 	table := tablewriter.NewWriter(os.Stdout)
-	table.SetHeader([]string{"ID", "Name", "Description", "Version", "Author", "Commands", "Categories", "Tags", "Metadata"})
+	table.SetHeader([]string{"ID", "Name", "Description", "Version", "Author"})
 
 	if len(tools) == 0 {
 		fmt.Println("Aucun outil trouvé.")
@@ -120,8 +157,6 @@ func ShowTools(tools []Tool) {
 			commands += cmd + "; "
 		}
 
-		metadata := fmt.Sprintf("License: %s, Source: %s, Logo: %s", tool.Metadata.License, tool.Metadata.Source, tool.Metadata.Logo_url)
-
 		// Ajouter les informations de l'outil dans la table
 		table.Append([]string{
 			tool.ID,
@@ -129,15 +164,59 @@ func ShowTools(tools []Tool) {
 			tool.Description,
 			tool.Version,
 			tool.Author,
-			commands,
-			fmt.Sprintf("%v", tool.Categories),
-			fmt.Sprintf("%v", tool.Tags),
-			metadata,
 		})
 	}
 
 	// Afficher la table
 	table.Render()
+}
+
+// FindTool recherche des outils dont le nom contient la sous-chaîne spécifiée dans le registre.
+func (r *Registry) FindTool(query string) ([]Tool, error) {
+	var results []Tool
+
+	for _, tool := range r.Tools {
+		if strings.Contains(strings.ToLower(tool.Name), strings.ToLower(query)) {
+			results = append(results, tool)
+		}
+	}
+
+	if len(results) == 0 {
+		return nil, fmt.Errorf("aucun outil trouvé pour la requête: %s", query)
+	}
+
+	return results, nil
+}
+
+// FindToolExact recherche un outil par nom exact dans le registry.
+func (r *Registry) FindToolExact(name string) (*Tool, error) {
+	for _, tool := range r.Tools {
+		if tool.Name == name {
+			return &tool, nil
+		}
+	}
+	return nil, fmt.Errorf("aucun outil trouvé pour le nom: %s", name)
+}
+
+// FindToolByID recherche un outil par ID dans le registry.
+func (r *Registry) FindToolByID(id string) (*Tool, error) {
+	for _, tool := range r.Tools {
+		if tool.ID == id {
+			return &tool, nil
+		}
+	}
+	return nil, fmt.Errorf("aucun outil trouvé pour l'ID: %s", id)
+}
+
+// FindToolsByAuthor recherche les outils par auteur dans le registry.
+func (r *Registry) FindToolsByAuthor(author string) []Tool {
+	var results []Tool
+	for _, tool := range r.Tools {
+		if tool.Metadata.Author == author {
+			results = append(results, tool)
+		}
+	}
+	return results
 }
 
 // FindToolsByCategory recherche les outils par catégorie dans le registry.
@@ -166,4 +245,58 @@ func (r *Registry) FindToolsByTag(tag string) []Tool {
 		}
 	}
 	return results
+}
+
+// ShowToolById affiche les informations détaillées sur un outil spécifique.
+func ShowToolById(r *Registry, toolID string) {
+	tool, err := r.FindToolByID(toolID)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	ShowTool(*tool)
+}
+
+// ShowTool affiche les informations détaillées sur un outil spécifique.
+func ShowTool(tool Tool) {
+	table := tablewriter.NewWriter(os.Stdout)
+	table.SetHeader([]string{"Field", "Value"})
+
+	// Ajouter les détails de l'outil dans la table
+	table.Append([]string{"ID", tool.ID})
+	table.Append([]string{"Name", tool.Name})
+	table.Append([]string{"Description", tool.Description})
+	table.Append([]string{"Version", tool.Version})
+	table.Append([]string{"Author", tool.Author})
+	table.Append([]string{"Commands", formatCommands(tool.TestCommands)})
+	table.Append([]string{"Categories", formatList(tool.Categories)})
+	table.Append([]string{"Tags", formatList(tool.Tags)})
+	table.Append([]string{"Metadata", formatMetadata(tool.Metadata)})
+
+	// Afficher la table
+	table.Render()
+}
+
+// formatCommands formate les commandes pour l'affichage.
+func formatCommands(commands []string) string {
+	if len(commands) == 0 {
+		return "N/A"
+	}
+	return formatList(commands)
+}
+
+// formatList formate une liste pour l'affichage.
+func formatList(list []string) string {
+	if len(list) == 0 {
+		return "N/A"
+	}
+	return fmt.Sprintf("[%s]", fmt.Sprintf("%s", list))
+}
+
+// formatMetadata formate les métadonnées pour l'affichage.
+func formatMetadata(metadata Metadata) string {
+	if (metadata == Metadata{}) {
+		return "N/A"
+	}
+	return fmt.Sprintf("License: %s; Source: %s; Logo URL: %s", metadata.License, metadata.Source, metadata.Logo_url)
 }

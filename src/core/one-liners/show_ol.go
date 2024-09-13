@@ -19,7 +19,7 @@ func ShowOneLiners(oneLiners []OneLiner) {
 	for _, ol := range oneLiners {
 		// Vérifier le filtre si spécifié (par nom, catégorie ou tag)
 		// Print test
-		fmt.Println(ol.Info.Name)
+		// fmt.Println(ol.Info.Name)
 		// Ajouter les informations du one-liner dans la table
 		table.Append([]string{
 			ol.ID,

@@ -21,12 +21,7 @@ func LoadRegistry(filepath string) (*Registry, error) {
 	return &registry, nil
 }
 
-// FindTool recherche un outil par son nom dans le registry.
-func (r *Registry) FindTool(name string) (*Tool, error) {
-	for _, tool := range r.Tools {
-		if tool.Name == name {
-			return &tool, nil
-		}
-	}
-	return nil, nil // ou renvoyer une erreur personnalisée si l'outil n'est pas trouvé
+// Get all tools from the registry
+func (r *Registry) GetTools() ([]Tool, error) {
+	return r.Tools, nil
 }

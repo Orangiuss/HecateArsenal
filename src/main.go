@@ -5,7 +5,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/Orangiuss/hecate/src/core/arsenal/marketplace"
+	mp "github.com/Orangiuss/hecate/src/core/arsenal/marketplace"
 	one_liners "github.com/Orangiuss/hecate/src/core/one-liners"
 	"github.com/Orangiuss/hecate/src/core/utils"
 )
@@ -30,34 +30,22 @@ func main() {
 
 	one_liners.TestOneLiner()
 
-	data := "example"
-	fmt.Println("MD5:", utils.HashMD5(data))
-	fmt.Println("SHA256:", utils.HashSHA256(data))
-
-	hexData := utils.ToHex(data)
-	fmt.Println("To Hex:", hexData)
-	decodedHex, _ := utils.FromHex(hexData)
-	fmt.Println("From Hex:", decodedHex)
-
-	hexDump := utils.ToHexDump(data)
-	fmt.Println("To Hex Dump:", hexDump)
-	decodedHexDump, _ := utils.FromHexDump(hexDump)
-	fmt.Println("From Hex Dump:", decodedHexDump)
-
-	match, _ := utils.RegexMatch(`[a-z]+`, data)
-	fmt.Println("Regex Match:", match)
-
-	replaced, _ := utils.RegexReplace(`e`, data, "E")
-	fmt.Println("Regex Replace:", replaced)
+	utils.ShowsAllsHashingEncoding()
 
 	// Charger le registre des outils
-	registry, err := marketplace.LoadRegistry("src/core/arsenal/tools.json")
+	registry, err := mp.LoadRegistry("src/core/arsenal/tools.json")
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	// Afficher les outils disponibles
-	marketplace.ShowTools(registry.Tools)
+	mp.ShowTools(registry)
+
+	// Afficher les outils par catégorie
+	mp.ShowToolsByCategory(registry, "Reconnaissance")
+
+	// Afficher les outils par tag
+	mp.ShowToolsByTag(registry, "reconnaissance")
 
 	// Rechercher un outil (par exemple, nmap)
 	tool, err := registry.FindTool("nmap")
@@ -65,19 +53,23 @@ func main() {
 		log.Fatal(err)
 	}
 
+	mp.ShowTool(tool[0])
+
+	tool2, _ := registry.FindToolByID("1")
+
 	// Choisir le package manager (par exemple, apt)
 	packageManager := "yum"
 
 	// Obtenir la commande d'installation pour le gestionnaire de paquets choisi
-	installCmd, err := tool.GetActionByPackageManager(packageManager, "install")
+	installCmd, err := tool2.GetActionByPackageManager(packageManager, "install")
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	fmt.Printf("Command to install %s using %s: %s\n", tool.Name, packageManager, installCmd)
+	fmt.Printf("Command to install %s using %s: %s\n", tool2.Name, packageManager, installCmd)
 
 	// Exécuter la commande d'installation
-	err = marketplace.InstallTool(*tool, packageManager)
+	err = mp.InstallTool(*tool2, packageManager)
 	if err != nil {
 		log.Fatal(err)
 	}

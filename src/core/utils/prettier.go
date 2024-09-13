@@ -7,7 +7,7 @@ import (
 )
 
 // printAscii est une fonction qui permet d'afficher un texte en ASCII, avec une couleur spécifique, variable oui ou non, default oui, couleur par défaut rouge
-func printAscii3(color string, variable bool) {
+func PrintAscii2(_ string) {
 	text := "Hecate"
 	ascii := figlet4go.NewAsciiRender()
 
