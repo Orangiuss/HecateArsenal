@@ -2,13 +2,20 @@ package main
 
 import (
 	"fmt"
+	"log"
+	"os"
 
+	"github.com/Orangiuss/hecate/src/core/arsenal/marketplace"
 	one_liners "github.com/Orangiuss/hecate/src/core/one-liners"
-	utils_hecate "github.com/Orangiuss/hecate/src/core/utils"
+	"github.com/Orangiuss/hecate/src/core/utils"
 )
 
 func main() {
-	utils_hecate.PrintAscii("32", false)
+	if !utils.IsRoot() {
+		fmt.Println("This program must be run as root.")
+		os.Exit(1)
+	}
+	utils.PrintAscii("32", false)
 
 	oneLiners, err := one_liners.LoadOneLiners("one-liners-templates")
 	if err != nil {
@@ -29,22 +36,55 @@ func main() {
 	one_liners.RunOneLiner(oneLiners[0].OneLiner.Cmd, vars)
 
 	data := "example"
-	fmt.Println("MD5:", utils_hecate.HashMD5(data))
-	fmt.Println("SHA256:", utils_hecate.HashSHA256(data))
+	fmt.Println("MD5:", utils.HashMD5(data))
+	fmt.Println("SHA256:", utils.HashSHA256(data))
 
-	hexData := utils_hecate.ToHex(data)
+	hexData := utils.ToHex(data)
 	fmt.Println("To Hex:", hexData)
-	decodedHex, _ := utils_hecate.FromHex(hexData)
+	decodedHex, _ := utils.FromHex(hexData)
 	fmt.Println("From Hex:", decodedHex)
 
-	hexDump := utils_hecate.ToHexDump(data)
+	hexDump := utils.ToHexDump(data)
 	fmt.Println("To Hex Dump:", hexDump)
-	decodedHexDump, _ := utils_hecate.FromHexDump(hexDump)
+	decodedHexDump, _ := utils.FromHexDump(hexDump)
 	fmt.Println("From Hex Dump:", decodedHexDump)
 
-	match, _ := utils_hecate.RegexMatch(`[a-z]+`, data)
+	match, _ := utils.RegexMatch(`[a-z]+`, data)
 	fmt.Println("Regex Match:", match)
 
-	replaced, _ := utils_hecate.RegexReplace(`e`, data, "E")
+	replaced, _ := utils.RegexReplace(`e`, data, "E")
 	fmt.Println("Regex Replace:", replaced)
+
+	// Charger le registre des outils
+	registry, err := marketplace.LoadRegistry("src/core/arsenal/tools.json")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	// Afficher les outils disponibles
+	marketplace.ShowTools(registry.Tools)
+
+	// Rechercher un outil (par exemple, nmap)
+	tool, err := registry.FindTool("nmap")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	// Choisir le package manager (par exemple, apt)
+	packageManager := "yum"
+
+	// Obtenir la commande d'installation pour le gestionnaire de paquets choisi
+	installCmd, err := tool.GetActionByPackageManager(packageManager, "install")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Printf("Command to install %s using %s: %s\n", tool.Name, packageManager, installCmd)
+
+	// Exécuter la commande d'installation
+	err = marketplace.InstallTool(*tool, packageManager)
+	if err != nil {
+		log.Fatal(err)
+	}
+
 }

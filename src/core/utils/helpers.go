@@ -2,10 +2,19 @@ package utils
 
 import (
 	"fmt"
+	"os/user"
 	"strconv"
 
 	"github.com/mbndr/figlet4go"
 )
+
+func IsRoot() bool {
+	usr, err := user.Current()
+	if err != nil {
+		return false
+	}
+	return usr.Uid == "0"
+}
 
 func PrintHelloWorld() {
 	printColor("Hello, World!", 32)

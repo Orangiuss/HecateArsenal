@@ -1,0 +1,116 @@
+{
+    "tools": [
+        {
+            "id": "1",
+            "name": "nmap",
+            "description": "Network exploration tool and security/port scanner.",
+            "version": "7.91",
+            "author": "Fyodor",
+            "test-commands": ["nmap -V"],
+            "packages-managers": ["apt", "yum", "pacman", "snap"],
+            "actions": {
+                "apt": {
+                    "install": "apt-get install nmap",
+                    "remove": "apt-get remove nmap",
+                    "update": "apt-get update nmap"
+                },
+                "yum": {
+                    "install": "yum install nmap",
+                    "remove": "yum remove nmap",
+                    "update": "yum update nmap"
+                },
+                "pacman": {
+                    "install": "pacman -S nmap",
+                    "remove": "pacman -R nmap",
+                    "update": "pacman -Syu nmap"
+                },
+                "snap": {
+                    "install": "snap install nmap",
+                    "remove": "snap remove nmap",
+                    "update": "snap refresh nmap"
+                }
+            },
+            "categories": ["Network Scanning", "Reconnaissance"],
+            "tags": ["network", "scanner", "security"],
+            "metadata": {
+                "license": "GPL",
+                "source": "https://nmap.org/",
+                "logo-url": "https://www.kali.org/tools/nmap/images/nmap-logo.svg"
+            }
+        },
+        {
+            "id": "2",
+            "name": "sqlmap",
+            "description": "Automatic SQL injection and database takeover tool.",
+            "version": "1.4",
+            "author": "Bernardo Damele A. G.",
+            "test-commands": ["sqlmap -u http://target.com --dbs"],
+            "actions": {
+                "apt": {
+                    "install": "apt-get install sqlmap",
+                    "remove": "apt-get remove sqlmap",
+                    "update": "apt-get update sqlmap"
+                },
+                "yum": {
+                    "install": "yum install sqlmap",
+                    "remove": "yum remove sqlmap",
+                    "update": "yum update sqlmap"
+                },
+                "pacman": {
+                    "install": "pacman -S sqlmap",
+                    "remove": "pacman -R sqlmap",
+                    "update": "pacman -Syu sqlmap"
+                },
+                "snap": {
+                    "install": "snap install sqlmap",
+                    "remove": "snap remove sqlmap",
+                    "update": "snap refresh sqlmap"
+                }
+            },
+            "categories": ["Database", "Exploitation"],
+            "tags": ["sql", "injection", "database", "exploit"],
+            "metadata": {
+                "license": "GPL",
+                "source": "https://sqlmap.org/",
+                "logo-url": "https://www.kali.org/tools/sqlmap/images/sqlmap-logo.svg"
+            }
+        },
+        {
+            "id": "3",
+            "name": "hydra",
+            "description": "Fast and flexible network login hacker.",
+            "version": "9.1",
+            "author": "Van Hauser",
+            "test-commands": ["hydra -V"],
+            "actions": {
+                "apt": {
+                    "install": "apt-get install hydra",
+                    "remove": "apt-get remove hydra",
+                    "update": "apt-get update hydra"
+                },
+                "yum": {
+                    "install": "yum install hydra",
+                    "remove": "yum remove hydra",
+                    "update": "yum update hydra"
+                },
+                "pacman": {
+                    "install": "pacman -S hydra",
+                    "remove": "pacman -R hydra",
+                    "update": "pacman -Syu hydra"
+                },
+                "snap": {
+                    "install": "snap install hydra",
+                    "remove": "snap remove hydra",
+                    "update": "snap refresh hydra"
+                }
+            },
+            "categories": ["Password Cracking", "Brute Force"],
+            "tags": ["network", "login", "hacker", "brute-force"],
+            "metadata": {
+                "license": "GPL",
+                "source": "https://github.com/vanhauser-thc/thc-hydra",
+                "logo-url": "https://www.kali.org/tools/hydra/images/hydra-logo.svg"
+            }
+        }
+    ]
+}

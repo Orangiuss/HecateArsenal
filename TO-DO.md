@@ -1,5 +1,15 @@
 # TO-DO file
 
+### Global TO-DO
+
+- [ ] **Arsenal** - Tools marketplace
+- [ ] **One-liners** - One-liners marketplace/run
+- [ ] **Forge** - Forge of commands/tools
+- [ ] **Cyberchief** - Cyberchief like tool (Other name to find)
+- [ ] **Report** - Report tool
+- [ ] **CVE/CWE** - Common Vulnerabilities and Exposures/Common Weakness Enumeration
+- [ ] **OSINT** - Open Source Intelligence
+
 ### Commandes de base pour le projet CLI HecateArsenal
 
 hecatearsenal
