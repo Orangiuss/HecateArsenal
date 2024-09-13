@@ -28,12 +28,7 @@ func main() {
 	// Afficher tous les one-liners disponibles
 	one_liners.ShowOneLiners(oneLiners)
 
-	// Exécuter un one-liner avec des variables
-	vars := map[string]string{
-		"DOMAIN":       "example.com",
-		"STATUS_CODES": "200,301,302",
-	}
-	one_liners.RunOneLiner(oneLiners[0].OneLiner.Cmd, vars)
+	one_liners.TestOneLiner()
 
 	data := "example"
 	fmt.Println("MD5:", utils.HashMD5(data))

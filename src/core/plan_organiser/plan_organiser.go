@@ -1,41 +1,11 @@
 package plan_organiser
 
 import (
-	"io/ioutil"
+	"os"
 
 	ol "github.com/Orangiuss/hecate/src/core/one-liners"
 	"gopkg.in/yaml.v2"
 )
-
-// PlanOrganiser est une structure qui contient une liste de méthodologies pour le pentest, avec les one-liners du module one_liners
-// Nous allons avoir les étapes suivantes:
-// 1. Reconnaissance
-// 2. Enumération
-// 3. Exploitation
-// 4. Post-exploitation
-// 5. Rapport
-
-// l'utilisateur peut définir son plan d'attaque en ajoutant ou en supprimant des one-liners à chaque étape, nous allons avoir des talbeaux
-// de one-liners pour chaque étape, et l'utilisateur peut les manipuler comme il le souhaite, et les sauver dans un fichier YAML
-// pour les réutiliser plus tard, avec l'ID de chaque one-liner comme clé.
-type PlanOrganiser struct {
-	Reconnaissance   []ol.OneLiner
-	Enumeration      []ol.OneLiner
-	Exploitation     []ol.OneLiner
-	PostExploitation []ol.OneLiner
-	Rapport          []ol.OneLiner
-}
-
-// NewPlanOrganiser crée une nouvelle instance de PlanOrganiser avec des tableaux vides pour chaque étape
-func NewPlanOrganiser() *PlanOrganiser {
-	return &PlanOrganiser{
-		Reconnaissance:   []ol.OneLiner{},
-		Enumeration:      []ol.OneLiner{},
-		Exploitation:     []ol.OneLiner{},
-		PostExploitation: []ol.OneLiner{},
-		Rapport:          []ol.OneLiner{},
-	}
-}
 
 // AddOneLiner ajoute un one-liner à une étape spécifique du plan d'attaque
 func (p *PlanOrganiser) AddOneLiner(oneLiner ol.OneLiner, step string) {
@@ -86,12 +56,12 @@ func (p *PlanOrganiser) SavePlan(filename string) error {
 	if err != nil {
 		return err
 	}
-	return ioutil.WriteFile(filename, data, 0644)
+	return os.WriteFile(filename, data, 0644)
 }
 
 // LoadPlan charge un plan d'attaque à partir d'un fichier YAML
 func LoadPlan(filename string) (*PlanOrganiser, error) {
-	data, err := ioutil.ReadFile(filename)
+	data, err := os.ReadFile(filename)
 	if err != nil {
 		return nil, err
 	}
@@ -108,30 +78,30 @@ func (p *PlanOrganiser) RunPlan() {
 	// Reconnaissance
 	for _, oneLiner := range p.Reconnaissance {
 		variablesMap := ol.ConvertVariablesToMap(oneLiner.Variables)
-		ol.RunOneLiner(oneLiner.OneLiner.Cmd, variablesMap)
+		ol.RunOneLiner(oneLiner, variablesMap)
 	}
 
 	// Enumeration
 	for _, oneLiner := range p.Enumeration {
 		variablesMap := ol.ConvertVariablesToMap(oneLiner.Variables)
-		ol.RunOneLiner(oneLiner.OneLiner.Cmd, variablesMap)
+		ol.RunOneLiner(oneLiner, variablesMap)
 	}
 
 	// Exploitation
 	for _, oneLiner := range p.Exploitation {
 		variablesMap := ol.ConvertVariablesToMap(oneLiner.Variables)
-		ol.RunOneLiner(oneLiner.OneLiner.Cmd, variablesMap)
+		ol.RunOneLiner(oneLiner, variablesMap)
 	}
 
 	// Post-exploitation
 	for _, oneLiner := range p.PostExploitation {
 		variablesMap := ol.ConvertVariablesToMap(oneLiner.Variables)
-		ol.RunOneLiner(oneLiner.OneLiner.Cmd, variablesMap)
+		ol.RunOneLiner(oneLiner, variablesMap)
 	}
 
 	// Rapport
 	for _, oneLiner := range p.Rapport {
 		variablesMap := ol.ConvertVariablesToMap(oneLiner.Variables)
-		ol.RunOneLiner(oneLiner.OneLiner.Cmd, variablesMap)
+		ol.RunOneLiner(oneLiner, variablesMap)
 	}
 }
