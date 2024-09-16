@@ -116,10 +116,10 @@ one-liner:
 
 ## Roadmap 🗺
 
-- November 2024️ - **Version 0.1** - Alpha Release with Core Features (CLI)
-- December 2024️ - **Version 1.0** - Initial Release with Core Features (GUI + CLI)
-- January 2025️ - **Version 1.1** - Bug Fixes and Enhancements
-- Summer 2025️ - **Version 1.2** - New Features and Improvements
+- `November 2024` - **Version 0.1** - Alpha Release with Core Features (CLI)
+- `December 2024` - **Version 1.0** - Initial Release with Core Features (GUI + CLI)
+- `January 2025` - **Version 1.1** - Bug Fixes and Enhancements
+- `Summer 2025` - **Version 1.2** - New Features and Improvements
 - ? : **Version 2.0** - Advanced Features and Modules + TUI project ?
 
 ## Disclaimer ⚠️
