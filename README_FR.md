@@ -1,30 +1,30 @@
 <h1 align="center">
-  <img src="img/logo_vf.png" alt="HecateArsenal" width="200px">
+  <img src="img/logo_vf.png" alt="Hecate" width="200px">
   <br>
 </h1>
 
 <h1 align="center">
-    HecateArsenal 🧙🏻‍♀️🔮🪄 - Framework de One-liners
+    Hecate 🧙🏻‍♀️🔮🪄 - Framework de One-liners
 </h1>
     <p align="center">
-  <a href="https://github.com/Orangiuss/HecateArsenal/blob/main/README.md">English</a> 
+  <a href="https://github.com/Orangiuss/hecate/blob/main/README.md">English</a> 
     -
-  <a href="https://github.com/Orangiuss/HecateArsenal/blob/main/README_FR.md">Français</a>
+  <a href="https://github.com/Orangiuss/hecate/blob/main/README_FR.md">Français</a>
     <!-- -
-  <a href="https://github.com/Orangiuss/HecateArsenal/blob/main/README_CN.md">中文</a>
+  <a href="https://github.com/Orangiuss/hecate/blob/main/README_CN.md">中文</a>
     -
-  <a href="https://github.com/Orangiuss/HecateArsenal/blob/main/README_JP.md">日本語</a> -->
+  <a href="https://github.com/Orangiuss/hecate/blob/main/README_JP.md">日本語</a> -->
     </p>
 <br>
 <br>
 
-`hecatearsenal` est un framework puissant et polyvalent conçu pour optimiser vos workflows de sécurité offensive et de tests d'intrusion. Il propose une riche collection de one-liners, permettant des évaluations de sécurité rapides et efficaces.
+`hecate` est un framework puissant et polyvalent conçu pour optimiser vos workflows de sécurité offensive et de tests d'intrusion. Il propose une riche collection de one-liners, permettant des évaluations de sécurité rapides et efficaces.
 
 ![HecateArsenalDemo](img/HecateArsenal.png)
 
 ## Description 📝
 
-HecateArsenal offre un arsenal complet de one-liners couvrant diverses tâches de sécurité. Du renseignement à la post-exploitation, ce framework permet aux professionnels de la sécurité de réaliser un large éventail d'opérations rapidement et avec un minimum d'effort.
+Hecate offre un arsenal complet de one-liners couvrant diverses tâches de sécurité. Du renseignement à la post-exploitation, ce framework permet aux professionnels de la sécurité de réaliser un large éventail d'opérations rapidement et avec un minimum d'effort.
 
 ## Fonctionnalités ⚙️
 

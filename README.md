@@ -58,36 +58,73 @@ Hecate provides a comprehensive arsenal of one-liners covering various security 
     cd hecate
     ```
 
+3. **Build the Framework:**
+
+    ```bash
+    setup.sh
+    ```
+
 ## Usage 🚀
 
 1. Run the framework with the following command:
 
     ```bash
-    python3 hecatearsenal.py <one-liner_name> <target_ip> [options]
+    hecate-cli --help
     ```
 
 2. **Example Command:**
 
     ```bash
-    python3 hecatearsenal.py nmap_scan 192.168.1.100
+    hecate-cli tool list
+    hecate-cli ol list
+    hecate-cli ol run example-one-liner
     ```
-
-    This executes an Nmap scan against the target IP `192.168.1.100` using default options.
 
 ## Customization 🛠️
 
-To add custom one-liners, create new Python functions within `hecatearsenal.py`, following the existing structure. Ensure proper documentation and error handling.
+To add custom one-liners, create new yaml files in the `one-liners` directory. Follow the existing structure and syntax for consistency :
+
+```yaml
+id: nmap-http-ports
+
+info:
+  name: Nmap HTTP Ports
+  default-category: recon
+  author: Orangius
+  complexity: low
+  description: |
+    Scan for open HTTP ports using Nmap
+  metadata:
+    verified: true
+  tags:
+    - nmap
+    - recon
+    - port-scanning
+    - beginner
+    - low
+    - simple
+
+variables:
+  DOMAIN:
+    description: The target domain
+    required: true
+
+one-liner:
+  cmd: |
+    nmap -sV -p 80,443 {DOMAIN}
+```
 
 ## Roadmap 🗺
 
-- December 2024️ : **Version 1.0** - Initial Release with Core Features (GUI + CLI)
-- January 2025️ : **Version 1.1** - Bug Fixes and Enhancements
-- Summer 2025️ : **Version 1.2** - New Features and Improvements
-- ? : **Version 2.0** - Advanced Features and Modules + TUI project
+- `November 2024️` : **Version 0.1** - Alpha Release with Core Features (CLI)
+- `December 2024️` : **Version 1.0** - Initial Release with Core Features (GUI + CLI)
+- `January 2025️` : **Version 1.1** - Bug Fixes and Enhancements
+- `Summer 2025️` : **Version 1.2** - New Features and Improvements
+- ? : **Version 2.0** - Advanced Features and Modules + TUI project ?
 
 ## Disclaimer ⚠️
 
-HecateArsenal is intended for authorized penetration testing and security assessments. Misuse of this tool is illegal and unethical. The authors are not responsible for any unauthorized activities.
+Hecate is intended for authorized penetration testing and security assessments. Misuse of this tool is illegal and unethical. The authors are not responsible for any unauthorized activities.
 
 ## Contributing 🤝
 
