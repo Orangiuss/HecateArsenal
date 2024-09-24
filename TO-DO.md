@@ -10,6 +10,12 @@
 - [ ] **CVE/CWE** - Common Vulnerabilities and Exposures/Common Weakness Enumeration
 - [ ] **OSINT** - Open Source Intelligence
 
+### Interesting tools to integrate in the project
+
+- [ ] **yq** - Command-line YAML processor
+- [ ] **jq** - Command-line JSON processor
+- [ ] **fzf** - Command-line fuzzy finder (for search)
+
 ### Commandes de base pour le projet CLI HecateArsenal
 
 hecatearsenal
