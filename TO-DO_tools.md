@@ -2,6 +2,7 @@
 
 ### Tools to integrate in the project
 
+- [ ] **crawl4ai** : https://github.com/unclecode/crawl4ai - Crawl4ai is a tool to crawl websites.
 - [ ] **Nmap** - Network Mapper
 - [ ] **Metasploit** - Penetration Testing Framework
 - [ ] **Wireshark** - Network Protocol Analyzer
